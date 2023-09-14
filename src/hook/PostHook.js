@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
-import { getPosts } from "../api/PostApi";
+import { getPost, getPosts } from "../api/PostApi";
 
 const usePostsHook = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        getPosts().then(data => { console.log(data); setPosts(data) });
+        getPosts().then(data => { setPosts(data) });
     }, [])
 
-    return {posts}
+    return { posts }
 }
 
-export default usePostsHook;
+const usePostHook = (postId) => {
+    const [post, setPost] = useState(null);
+    useEffect(() => {
+        getPost(postId).then(data => { setPost(data) });
+    }, [])
+
+    return { post }
+}
+
+export { usePostsHook, usePostHook };
