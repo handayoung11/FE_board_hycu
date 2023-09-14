@@ -4,6 +4,9 @@ import './index.css';
 import FeedView from './page/FeedView';
 import FeedDetail from './page/FeedDetail';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8080';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([

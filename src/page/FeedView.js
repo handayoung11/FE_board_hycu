@@ -1,11 +1,17 @@
 import Layout from "../Layout/Layout";
-import Header from "../comp/Header";
 import PageNav from "../comp/PageNav";
+import usePostsHook from "../hook/PostHook";
+import Feed from "../comp/Feed";
 
 function FeedView() {
+
+  console.log(1);
+  const {posts} = usePostsHook();
+  const feeds = posts.map(p => <Feed key={p.id} {...p} />)
+
   return <Layout headerContent = { PageNav() }>
-    <div class="p-4 text-2xl text-gray-700">
-      {/* {{ __news_feed__ }} */}
+    <div className="p-4 text-2xl text-gray-700">
+      {feeds}
     </div>
   </Layout>;
 }
