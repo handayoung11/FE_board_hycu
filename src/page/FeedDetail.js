@@ -7,9 +7,8 @@ import Comment from "../comp/Comment";
 export default function FeedDetail() {
     const { postId } = useParams();
     const { post } = usePostHook(postId);
-    const comments = post ? post.comments.map(c => <Comment {...c} />) : "";
+    const comments = post ? post.comments.map(c => <Comment key={c.id} {...c} />) : "";
 
-    console.log(comments);
     return <Layout headerContent={CloseFeedDetail()}>
         <div className="h-full border rounded-xl bg-white m-6 p-4 ">
             <h2 className="text-2xl mb-4">{post ? post.title : ""}</h2>

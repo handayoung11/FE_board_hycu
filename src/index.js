@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <FeedView />,
   },
   {
-    path: "/page/:page",
+    path: "/post",
     element: <FeedView />,
   },
   {

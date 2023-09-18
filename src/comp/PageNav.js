@@ -1,10 +1,15 @@
-export default function PageNav() {
+import { Link } from "react-router-dom";
+
+export default function PageNav({ page }) {
+    console.log(page);
+    const prev = page > 1 ? page - 1 : 1;
+
     return <>
-        <a href="#/page/{{__prev_page__}}" className="text-gray-500">
+        <Link to={`/post?page=${prev}`} className="text-gray-500">
             Previous
-        </a>
-        <a href="#/page/{{__next_page__}}" className="text-gray-500 ml-4">
+        </Link>
+        <Link to={`/post?page=${page + 1}`} className="text-gray-500 ml-4">
             Next
-        </a>
+        </Link>
     </>
 }
