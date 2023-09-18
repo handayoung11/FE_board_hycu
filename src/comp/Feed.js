@@ -3,9 +3,9 @@ import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-export default function Feed({ id, title, comments_count, user, like, time_ago, read }) {
+export default function Feed({ id, title, comments_count, user, like, time_ago, read, page }) {
 
-    return <Link to={`/post/${id}`}>
+    return <Link to={`/post/${id}`} state={{page: page}}>
         <div className={`p-6 ${read ? 'bg-amber-300' : 'bg-white'} mt-6 rounded-lg shadow-md transition-colors duration-500 hover:bg-green-100`}>
             <div className="flex">
                 <div className="flex-auto">

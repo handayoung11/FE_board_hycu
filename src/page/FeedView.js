@@ -13,11 +13,11 @@ function FeedView() {
   if (posts) {
     for (let i = (page - 1) * 10; i < page * 10 && i < posts.length; i++) {
       const p = posts[i];
-      feeds.push(<Feed key={p.id} {...p} />)
+      feeds.push(<Feed key={p.id} page={page} {...p} />)
     }
   }
 
-  return <Layout headerContent={<PageNav page={page} />}>
+  return <Layout headerContent={<PageNav page={page} max={Math.ceil(posts.length/10)} />}>
     <div className="p-4 text-2xl text-gray-700">
       {feeds}
     </div>
