@@ -14,7 +14,7 @@ const usePostHook = (postId) => {
     const [post, setPost] = useState(null);
     useEffect(() => {
         getPost(postId).then(data => { setPost(data) });
-    }, [])
+    }, [postId])
 
     return { post }
 }

@@ -7,17 +7,20 @@ import { useSearchParams } from "react-router-dom";
 function FeedView() {
   const { posts } = usePostsHook();
   const [searchParams] = useSearchParams();
+  const pageSize = 5;
   const page = Number(searchParams.get('page')) || 1;
   const feeds = [];
+  let max = 1;
 
   if (posts) {
-    for (let i = (page - 1) * 10; i < page * 10 && i < posts.length; i++) {
+    for (let i = (page - 1) * pageSize; i < page * pageSize && i < posts.length; i++) {
       const p = posts[i];
       feeds.push(<Feed key={p.id} page={page} {...p} />)
     }
+    max = Math.ceil(posts.length/pageSize);
   }
 
-  return <Layout headerContent={<PageNav page={page} max={Math.ceil(posts.length/10)} />}>
+  return <Layout headerContent={<PageNav page={page} max={max} />}>
     <div className="p-4 text-2xl text-gray-700">
       {feeds}
     </div>

@@ -2,6 +2,7 @@ import { faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
 
 export default function Feed({ id, title, comments_count, user, like, time_ago, read, page }) {
 
@@ -19,7 +20,7 @@ export default function Feed({ id, title, comments_count, user, like, time_ago, 
                 <div className="grid grid-cols-3 text-sm text-gray-500">
                     <div><FontAwesomeIcon icon={faUser} className="mr-1" />{user}</div>
                     <div><FontAwesomeIcon icon={faHeart} className="mr-1" />{like}</div>
-                    <div><FontAwesomeIcon icon={faClock} className="mr-1" />{time_ago}</div>
+                    <div><FontAwesomeIcon icon={faClock} className="mr-1" />{format(time_ago)}</div>
                 </div>
             </div>
         </div>
