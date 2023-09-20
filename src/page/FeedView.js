@@ -3,6 +3,7 @@ import PageNav from "../comp/PageNav";
 import Feed from "../comp/Feed";
 import { usePostsHook } from "../hook/PostHook";
 import { useSearchParams } from "react-router-dom";
+import LoginHeader from "../comp/LoginHeader";
 
 function FeedView() {
   const { posts } = usePostsHook();
@@ -20,8 +21,9 @@ function FeedView() {
     max = Math.ceil(posts.length/pageSize);
   }
 
-  return <Layout headerContent={<PageNav page={page} max={max} />}>
+  return <Layout headerContent={<LoginHeader />}>
     <div className="p-4 text-2xl text-gray-700">
+      <PageNav page={page} max={max} />
       {feeds}
     </div>
   </Layout>;
