@@ -16,6 +16,15 @@ code {
     monospace;
 }
 
-.swal2-modal {
+.swal2-modal > .swal2-html-container {
+  color: rgb(209 213 219);
+}
+
+.swal2-modal, .swal2-validation-message {
   background-color: rgb(55 65 81);
+}
+
+.swal2-validation-message {
+  color: rgb(209 213 219);
+  font-size: 15px;
 }

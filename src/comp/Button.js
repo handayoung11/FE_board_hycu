@@ -10,7 +10,7 @@ export default function Button({ children, className = "", level = 1, onClick=()
     }
 
     return <button className={`rounded-xl p-2 text-sm text-white focus:ring-4 focus:outline-none ${className}`} onClick={e => {
-        onClick();
         e.currentTarget.blur();
+        onClick();
     }}>{children}</button>
 }
