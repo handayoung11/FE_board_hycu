@@ -15,8 +15,9 @@ export default function SignUp() {
                     </h1>
                     <form className="space-y-4 md:space-y-6" action="#">
                         <LabelInput type="email" label="이메일" placeholder="name@company.com" autoFocus={true} />
+                        <LabelInput type="nickname" label="닉네임" placeholder="nickname" />
                         <LabelInput type="password" label="비밀번호" placeholder="••••••••" />
-                        <LabelInput type="confirm-password" label="비밀번호 확인" placeholder="••••••••" />
+                        <LabelInput type="password" label="비밀번호 확인" placeholder="••••••••" id="confirm-password" />
                         <CheckboxLabel id="terms" content={<><CustomLink to="#" inline={true} >이용약관</CustomLink>에 동의합니다. </>} />
                         <Button level={-2} className="w-full font-medium px-5 py-2.5">회원가입하기</Button>
                     </form>
