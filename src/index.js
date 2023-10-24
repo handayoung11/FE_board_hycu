@@ -7,6 +7,7 @@ import './index.css';
 import FeedDetail from './page/FeedDetail';
 import FeedView from './page/FeedView';
 import { EXPIRED, getToken } from './utils/UserUtils';
+import SignUp from './page/SignUp';
 
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.withCredentials = true;
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <FeedView />,
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp />,
   },
   {
     path: "/post",
