@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
+import Swal from "sweetalert2";
 import Layout from "../Layout/Layout";
+import { checkMail, checkNickname } from "../api/UserApi";
 import Button from "../comp/Button";
 import CheckboxLabel from "../comp/CheckboxLabel";
 import CustomLink from "../comp/CustomLink";
 import ErrCheckLabelInput from "../comp/ErrLabel";
 import LoginHeader from "../comp/LoginHeader";
-import Swal from "sweetalert2";
 
 export default function SignUp() {
     const emailRef = useRef();
@@ -32,12 +33,20 @@ export default function SignUp() {
 
     const mailCheck = {
         blankMsg: "이메일을 입력해주세요.",
-        regExps: [{ pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, msg: "이메일 형식을 확인해주세요." }]
+        regExps: [{ pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, msg: "이메일 형식을 확인해주세요." }],
+        funcs: [{
+            func: async () => await checkMail(emailRef.current.input.value),
+            msg: "사용할 수 없는 메일입니다. 다른 메일을 입력해주세요."
+        }]
     };
 
     const nicknameCheck = {
         blankMsg: "닉네임을 입력해주세요.",
-        regExps: [{ pattern: /^.{2,10}$/, msg: "2글자 이상 10글자 이하로 입력해주세요." }]
+        regExps: [{ pattern: /^.{2,10}$/, msg: "2글자 이상 10글자 이하로 입력해주세요." }],
+        funcs: [{
+            func: async () => await checkNickname(nickRef.current.input.value),
+            msg: "사용할 수 없는 닉네임입니다. 다른 닉네임을 입력해주세요."
+        }]
     };
 
     const checkPwConfirm = () => {

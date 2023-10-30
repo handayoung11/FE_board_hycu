@@ -8,8 +8,7 @@ const ErrCheckLabelInput = forwardRef(({ blankMsg, regExps = [], funcs = [], par
     
     useImperativeHandle(ref, () => ({input: input.current, hasError: msg !== "" || parentMsg !== ""}));
 
-    const onBlur = () => {
-        setMsg("");
+    const onBlur = async () => {
         setFocused(true);
         parentOnBlur();
         const value = input.current.value;
@@ -24,12 +23,13 @@ const ErrCheckLabelInput = forwardRef(({ blankMsg, regExps = [], funcs = [], par
             }
 
             for (const func of funcs) {
-                if (!func.func()) {
+                if (! await func.func()) {
                     setMsg(func.msg);
                     return;
                 }
             }
         }
+        setMsg("");
     }
 
     return <>
