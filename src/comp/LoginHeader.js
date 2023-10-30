@@ -15,7 +15,7 @@ export default function LoginHeader() {
             showConfirmButton: false,
             allowOutsideClick: false,
             showCloseButton: true,
-            html: <BrowserRouter><LoginModal onSuccess={() => { swal.close(); login(); }} /></BrowserRouter>,
+            html: <BrowserRouter><LoginModal onSuccess={() => { swal.close(); login(); }} navigate={path => { swal.close(); navigate(path); }} /></BrowserRouter>,
         })
     }
 

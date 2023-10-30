@@ -5,7 +5,7 @@ import CustomLink from "../../comp/CustomLink";
 import LabelInput from "../../comp/LabelInput";
 import Swal from "sweetalert2";
 
-export default function LoginModal({ onSuccess = () => {}}) {
+export default function LoginModal({ onSuccess = () => { }, navigate }) {
 
     const loginRefs = useRef([null, null]);
 
@@ -27,7 +27,7 @@ export default function LoginModal({ onSuccess = () => {}}) {
             <Button level={-2} className="w-full font-medium px-5 py-2.5">내 계정으로 Login하기</Button>
             <div className="flex flex-col justify-between">
                 <CustomLink to="#">비밀번호를 잊어버렸나요?</CustomLink>
-                <CustomLink to="#" text="계정이 없나요?">회원가입하기</CustomLink>
+                <CustomLink onClick={() => { navigate("/sign-up"); }} text="계정이 없나요?">회원가입하기</CustomLink>
             </div>
         </form>
     </div>

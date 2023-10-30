@@ -6,6 +6,9 @@ import LabelInput from "../comp/LabelInput";
 import LoginHeader from "../comp/LoginHeader";
 
 export default function SignUp() {
+    const onSubmit = e => {
+        e.preventDefault();
+    }
     return <Layout headerContent={<LoginHeader />} className="flex flex-col">
         <div className="flex flex-col items-center grow justify-center px-6 py-8">
             <div className="w-full rounded-lg shadow border bg-gray-700 border-gray-700 sm:max-w-md">
@@ -13,8 +16,8 @@ export default function SignUp() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
                         회원가입
                     </h1>
-                    <form className="space-y-4 md:space-y-6" action="#">
-                        <LabelInput type="email" label="이메일" placeholder="name@company.com" autoFocus={true} />
+                    <form onSubmit={onSubmit} className="space-y-4 md:space-y-6">
+                        <LabelInput type="email" label="이메일" placeholder="name@company.com" autoFocus={true} autoComplete={true} />
                         <LabelInput type="nickname" label="닉네임" placeholder="nickname" />
                         <LabelInput type="password" label="비밀번호" placeholder="••••••••" />
                         <LabelInput type="password" label="비밀번호 확인" placeholder="••••••••" id="confirm-password" />
