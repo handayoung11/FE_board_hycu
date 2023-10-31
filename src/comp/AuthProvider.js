@@ -11,6 +11,7 @@ export function useAuth() {
 
 export default function AuthProvider({ children }) {
     const [isLoggedIn, setLoggedIn] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const login = () => {
         axios.defaults.headers.common = { 'Authorization': `Bearer ${getToken()}` }
         setLoggedIn(true);
@@ -46,7 +47,7 @@ export default function AuthProvider({ children }) {
     window.reLogin = reLogin;
     window.logout = logout;
 
-    return <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    return <AuthContext.Provider value={{ isLoggedIn, login, logout, showLoginModal, setShowLoginModal }}>
         {children}
     </AuthContext.Provider>
 }

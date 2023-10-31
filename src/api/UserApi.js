@@ -14,3 +14,10 @@ export async function checkNickname(nickname) {
         return res.data;
     }
 }
+
+export async function signUp(signUpData) {
+    const res = await axios.post("/user", signUpData).catch(onError);
+    if (isValidRes(res)) {
+        return true;
+    }
+}

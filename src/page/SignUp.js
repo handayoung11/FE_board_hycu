@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Layout from "../Layout/Layout";
-import { checkMail, checkNickname } from "../api/UserApi";
+import { checkMail, checkNickname, signUp } from "../api/UserApi";
 import Button from "../comp/Button";
 import CheckboxLabel from "../comp/CheckboxLabel";
 import CustomLink from "../comp/CustomLink";
 import ErrCheckLabelInput from "../comp/ErrLabel";
 import LoginHeader from "../comp/LoginHeader";
+import { useAuth } from "../comp/AuthProvider";
 
 export default function SignUp() {
     const emailRef = useRef();
@@ -15,6 +17,8 @@ export default function SignUp() {
     const pwConfirmRef = useRef();
     const checkRef = useRef();
     const [pwConfrimMsg, setPwConfirmMsg] = useState("");
+    const navigate = useNavigate();
+    const { setShowLoginModal } = useAuth();
 
     const onSubmit = e => {
         e.preventDefault();
@@ -28,6 +32,12 @@ export default function SignUp() {
                 text: "이용약관에 동의해주세요.",
                 icon: "error"
             })
+        } else {
+            const res = signUp({ email: emailRef.current.input.value, nickname: nickRef.current.input.value, pw: pwRef.current.input.value });
+            if (res) {
+                setShowLoginModal(true);
+                navigate("/");
+            }
         }
     }
 
