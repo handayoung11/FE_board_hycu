@@ -9,7 +9,7 @@ import Button from "./Button";
 
 const swal = withReactContent(Swal);
 export default function LoginHeader() {
-    const { isLoggedIn, login, logout, showLoginModal, setShowLoginModal } = useAuth();
+    const { isLoggedIn, login, logout, showLoginModal, setShowLoginModal, userInfo } = useAuth();
     const navigate = useNavigate();
     const openSwal = () => {
         swal.fire({
@@ -40,7 +40,7 @@ export default function LoginHeader() {
             <Button level={2} onClick={() => navigate("/sign-up")}>회원가입</Button>
         </> :
         <>
-            "안녕하세요 회원님, 반갑습니다."
+            <span className="font-hans">{userInfo.nickname}님, 반갑습니다!</span>
             <Button className="ml-4" level={2} onClick={() => { logout(); }}>로그아웃</Button>
         </>
 

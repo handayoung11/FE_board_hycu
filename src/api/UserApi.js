@@ -21,3 +21,10 @@ export async function signUp(signUpData) {
         return true;
     }
 }
+
+export async function getMyInfo() {
+    const res = await axios.get('/user/me');
+    if (isValidRes(res)) {
+        return res.data;
+    }
+}
