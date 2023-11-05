@@ -5,10 +5,10 @@ export default function PageNav({ page, max }) {
     const next = page === max ? page : page + 1;
 
     return <>
-        <Link to={`/post?page=${prev}`} className="text-white">
+        <Link to={`/post?page=${prev}`} className="text-black">
             &lt;
         </Link>
-        <Link to={`/post?page=${next}`} className="text-white ml-4">
+        <Link to={`/post?page=${next}`} className="text-black ml-4">
             &gt;
         </Link>
     </>

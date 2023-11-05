@@ -1,13 +1,17 @@
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Layout from "../Layout/Layout";
-import PageNav from "../comp/PageNav";
 import Feed from "../comp/Feed";
-import { usePostsHook } from "../hook/PostHook";
-import { useSearchParams } from "react-router-dom";
+import FixedRoundButton from "../comp/FixedRoundButton";
 import LoginHeader from "../comp/LoginHeader";
+import PageNav from "../comp/PageNav";
+import { usePostsHook } from "../hook/PostHook";
 
 function FeedView() {
   const { posts } = usePostsHook();
   const [searchParams] = useSearchParams();
+  const naviagte = useNavigate();
   const pageSize = 5;
   const page = Number(searchParams.get('page')) || 1;
   const feeds = [];
@@ -18,14 +22,16 @@ function FeedView() {
       const p = posts[i];
       feeds.push(<Feed key={p.id} page={page} {...p} />)
     }
-    max = Math.ceil(posts.length/pageSize);
+    max = Math.ceil(posts.length / pageSize);
   }
 
-  return <Layout headerContent={<LoginHeader />}>
-    <div className="p-4 text-2xl text-gray-700">
-      <PageNav page={page} max={max} />
+  return <Layout className="flex flex-col h-screen" headerContent={<LoginHeader pageNav={<PageNav page={page} max={max} />} />}>
+    <div className="p-4 text-2xl text-gray-700 overflow-auto">
       {feeds}
     </div>
+    <FixedRoundButton onClick={() => naviagte("/post/write")}>
+      <FontAwesomeIcon icon={faPenToSquare} />
+    </FixedRoundButton>
   </Layout>;
 }
 

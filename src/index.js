@@ -8,6 +8,7 @@ import FeedDetail from './page/FeedDetail';
 import FeedView from './page/FeedView';
 import { EXPIRED, getToken } from './utils/UserUtils';
 import SignUp from './page/SignUp';
+import PostWrite from './page/PostWrite';
 
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.withCredentials = true;
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/post/:postId",
     element: <FeedDetail />,
+  },
+  {
+    path: "/post/write",
+    element: <PostWrite />,
   },
 ]);
 

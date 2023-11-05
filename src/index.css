@@ -42,3 +42,7 @@ code {
 .font-hans {
   font-family: 'Nanum Gothic', sans-serif;
 }
+
+.focus\:ring-rose-750:focus {
+  --tw-ring-color: rgb(233 95 128);
+}

@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import ReactDOM from 'react-dom/client';
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -6,11 +8,15 @@ import withReactContent from "sweetalert2-react-content";
 import LoginModal from "../page/modal/LoginModal";
 import { useAuth } from "./AuthProvider";
 import Button from "./Button";
+import ListButton from "./ListButton";
+import ListButtonContainer from "./ListButtonContainer";
 
 const swal = withReactContent(Swal);
-export default function LoginHeader() {
-    const { isLoggedIn, login, logout, showLoginModal, setShowLoginModal, userInfo } = useAuth();
+export default function LoginHeader({ pageNav }) {
+    const { isLoggedIn, login, logout, showLoginModal, setShowLoginModal } = useAuth();
     const navigate = useNavigate();
+    const [showButtons, setShowButtons] = useState(false);
+
     const openSwal = () => {
         swal.fire({
             showConfirmButton: false,
@@ -40,8 +46,13 @@ export default function LoginHeader() {
             <Button level={2} onClick={() => navigate("/sign-up")}>회원가입</Button>
         </> :
         <>
-            <span className="font-hans">{userInfo.nickname}님, 반갑습니다!</span>
-            <Button className="ml-4" level={2} onClick={() => { logout(); }}>로그아웃</Button>
+            {pageNav}
+            <button className="ml-6" onClick={e => { setShowButtons(cur => !cur); e.stopPropagation() }}>
+                <FontAwesomeIcon icon={faEllipsisVertical} className="text-slate-400 text-2xl" />
+            </button>
+            <ListButtonContainer showButtons={showButtons} setShowButtons={setShowButtons} >
+                <ListButton isFirst={true} onClick={() => { logout(); }}>로그아웃</ListButton>
+            </ListButtonContainer>
         </>
 
 }
