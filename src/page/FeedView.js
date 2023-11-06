@@ -29,7 +29,7 @@ function FeedView() {
     <div className="p-4 text-2xl text-gray-700 overflow-auto">
       {feeds}
     </div>
-    <FixedRoundButton onClick={() => naviagte("/post/write")}>
+    <FixedRoundButton onClick={() => naviagte("/post/write", { state: { page } })}>
       <FontAwesomeIcon icon={faPenToSquare} />
     </FixedRoundButton>
   </Layout>;
