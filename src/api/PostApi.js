@@ -14,3 +14,10 @@ export async function getPost(postId) {
         return res.data;
     }
 }
+
+export async function writePost(postData) {
+    const res = await axios.post("post", postData).catch(onError);
+    if (isValidRes(res)) {
+        return true;
+    }
+}

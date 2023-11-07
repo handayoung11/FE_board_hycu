@@ -38,12 +38,13 @@ export default function LoginHeader({ pageNav }) {
             openSwal();
         }
         // eslint-disable-next-line
-    }, [])
+    }, [showLoginModal])
 
     return !isLoggedIn ?
         <>
-            <Button className="mr-3" onClick={openSwal}>로그인</Button>
-            <Button level={2} onClick={() => navigate("/sign-up")}>회원가입</Button>
+            {pageNav}
+            <Button className="ml-2 mr-1 text-xs sm:text-sm sm:mx-3" onClick={openSwal}>로그인</Button>
+            <Button level={2} onClick={() => navigate("/sign-up")} className="text-xs sm:text-sm" >회원가입</Button>
         </> :
         <>
             {pageNav}

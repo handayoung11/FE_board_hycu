@@ -22,8 +22,8 @@ export default function LoginModal({ onSuccess = () => { }, navigate }) {
     return <div className="px-6 pt-6 lg:px-8 text-left">
         <h3 className="mb-4 text-xl text-white">HYCU News Login</h3>
         <form className="space-y-6" onSubmit={onSubmit}>
-            <LabelInput type="email" placeholder="name@company.com" autoFocus={true} onChange={Swal.resetValidationMessage} ref={el => loginRefs.current[0] = el} />
-            <LabelInput type="password" placeholder="••••••••" onChange={Swal.resetValidationMessage} ref={el => loginRefs.current[1] = el} />
+            <LabelInput type="email" placeholder="name@company.com" autoFocus={true} onChange={Swal.resetValidationMessage} star={false} ref={el => loginRefs.current[0] = el} />
+            <LabelInput type="password" placeholder="••••••••" onChange={Swal.resetValidationMessage} star={false} ref={el => loginRefs.current[1] = el} />
             <Button level={-2} className="w-full font-medium px-5 py-2.5">내 계정으로 Login하기</Button>
             <div className="flex flex-col justify-between">
                 <CustomLink to="#">비밀번호를 잊어버렸나요?</CustomLink>
