@@ -9,9 +9,12 @@ import FeedView from './page/FeedView';
 import { EXPIRED, getToken } from './utils/UserUtils';
 import SignUp from './page/SignUp';
 import PostWrite from './page/PostWrite';
+import { register } from 'timeago.js'
+import koLocale from 'timeago.js/lib/lang/ko'
 
-axios.defaults.baseURL = 'http://localhost:8080';
+register('ko', koLocale);
 axios.defaults.withCredentials = true;
+axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true';
 axios.interceptors.response.use(undefined, async e => {
   const res = e.response;
   const config = e.config;
