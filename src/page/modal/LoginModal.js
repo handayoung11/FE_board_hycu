@@ -1,9 +1,9 @@
 import { useRef } from "react";
+import Swal from "sweetalert2";
 import { postToken } from "../../api/TokenApi";
 import Button from "../../comp/Button";
 import CustomLink from "../../comp/CustomLink";
 import LabelInput from "../../comp/LabelInput";
-import Swal from "sweetalert2";
 
 export default function LoginModal({ onSuccess = () => { }, navigate }) {
 
@@ -13,7 +13,7 @@ export default function LoginModal({ onSuccess = () => { }, navigate }) {
         e.preventDefault();
         const res = await postToken(loginRefs.current[0].value, loginRefs.current[1].value);
         if (res) {
-            onSuccess();
+            onSuccess(res);
         } else {
             loginRefs.current[0].focus();
         }

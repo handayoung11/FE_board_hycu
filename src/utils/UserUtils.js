@@ -18,3 +18,7 @@ export async function isTokenValid() {
 export function getToken() {
     return Cookies.get("token");
 }
+
+export function saveToken(res) {
+    Cookies.set("token", res, { expires: 92 });
+}

@@ -27,7 +27,7 @@ export default function LoginHeader({ pageNav }) {
         const root = ReactDOM.createRoot(document.getElementById('swal2-html-container'));
         root.render(
             <MemoryRouter>
-                <LoginModal onSuccess={() => { swal.close(); login(); }} navigate={path => { swal.close(); navigate(path); }} />
+                <LoginModal onSuccess={token => { swal.close(); login(token); }} navigate={path => { swal.close(); navigate(path); }} />
             </MemoryRouter>
         );
     }

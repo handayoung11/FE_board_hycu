@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { refreshToken } from "../api/TokenApi";
-import { EXPIRED, LOGIN_SUCCESS, getToken, isTokenValid, removeToken } from "../utils/UserUtils";
+import { EXPIRED, LOGIN_SUCCESS, getToken, isTokenValid, removeToken, saveToken } from "../utils/UserUtils";
 import { getMyInfo } from "../api/UserApi";
 
 const AuthContext = createContext();
@@ -15,8 +15,9 @@ export default function AuthProvider({ children }) {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [userInfo, setUserInfo] = useState();
 
-    const login = async () => {
-        axios.defaults.headers.common = { 'Authorization': `Bearer ${getToken()}` }
+    const login = async (token) => {
+        if (token) saveToken(token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${getToken()}`;
         const res = await getMyInfo();
         setUserInfo(res);
         setLoggedIn(true);
@@ -29,9 +30,9 @@ export default function AuthProvider({ children }) {
     }
 
     const reLogin = async () => {
-        const isSuccessed = await refreshToken();
-        if (isSuccessed) {
-            login();
+        const res = await refreshToken();
+        if (res) {
+            login(res);
             return true;
         }
         else return false;

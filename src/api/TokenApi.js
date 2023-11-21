@@ -16,7 +16,7 @@ export async function postToken(id, pw) {
         }
     });
     if (isValidRes(res)) {
-        return true;
+        return res.data;
     }
 }
 
@@ -45,6 +45,6 @@ export async function refreshToken() {
     });
 
     if (isValidRes(res)) {
-        return true
+        return res.data
     }
 }
