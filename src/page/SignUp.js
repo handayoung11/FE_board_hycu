@@ -91,7 +91,7 @@ export default function SignUp() {
                         <ErrCheckLabelInput type="password" label="비밀번호" placeholder="8~16자로 입력해주세요." {...pwCheck} ref={pwRef} />
                         <ErrCheckLabelInput type="password" label="비밀번호 확인" placeholder="••••••••" id="confirm-password" {...pwConfirmCheck} ref={pwConfirmRef} />
                         <CheckboxLabel id="terms" content={<><CustomLink to="#" inline={true} >이용약관</CustomLink>에 동의합니다. </>} ref={checkRef} />
-                        <Button level={-2} className="w-full font-medium px-5 py-2.5">회원가입하기</Button>
+                        <Button level={3} className="w-full font-medium px-5 py-2.5">회원가입하기</Button>
                     </form>
                 </div>
             </div>

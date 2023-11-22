@@ -50,3 +50,7 @@ div:where(.swal2-container) h2:where(.swal2-title) {
 .focus\:ring-rose-750:focus {
   --tw-ring-color: rgb(233 95 128);
 }
+
+.max-h-screen-35 {
+  max-height: 35vh;
+}

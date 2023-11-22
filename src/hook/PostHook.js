@@ -10,11 +10,11 @@ const usePostsHook = () => {
     return { posts }
 }
 
-const usePostHook = (postId) => {
+const usePostHook = (postId, isLoggedIn) => {
     const [post, setPost] = useState(null);
     useEffect(() => {
         getPost(postId).then(data => { setPost(data) });
-    }, [postId])
+    }, [postId, isLoggedIn])
 
     return { post }
 }
