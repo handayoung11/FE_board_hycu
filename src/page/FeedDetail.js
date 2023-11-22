@@ -4,12 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Layout from "../Layout/Layout";
 import Button from "../comp/Button";
-import CloseFeedDetail from "../comp/CloseFeedDetail";
+import ClosePage from "../comp/CloseFeedDetail";
 import Comment from "../comp/Comment";
 import usePageStateHook from "../hook/PageStateHook";
 import { usePostHook } from "../hook/PostHook";
 import { deletePost } from "../api/PostApi";
 import { useAuth } from "../comp/AuthProvider";
+import { useEffect } from "react";
 
 export default function FeedDetail() {
     const { postId } = useParams();
@@ -19,7 +20,14 @@ export default function FeedDetail() {
     const comments = post ? post.comments.map(c => <Comment key={c.id} {...c} />) : "";
     const navigate = useNavigate();
     const { isLoggedIn, userInfo } = useAuth();
-    console.log(userInfo);
+    
+    useEffect(() => {
+        return Swal.close;
+    })
+
+    function onUpdate() {
+        navigate(`/post/update/${postId}`, { state: { post } });
+    }
 
     async function onDelete() {
         const res = await Swal.fire({
@@ -40,7 +48,7 @@ export default function FeedDetail() {
         }
     }
 
-    return <Layout headerContent={<CloseFeedDetail page={page} />}>
+    return <Layout headerContent={<ClosePage page={page} />}>
         <div className="h-full border rounded-xl bg-white m-6 p-4 mb-2">
             <h2 className="text-2xl mb-4">{post ? post.title : ""}</h2>
             <div className="text-gray-400 whitespace-pre-wrap" style={{ minHeight: '5rem' }}>
@@ -50,7 +58,7 @@ export default function FeedDetail() {
         {post && isLoggedIn && userInfo.id === post.creator.id &&
             <div className="flex flex-row-reverse gap-2 mx-6 mb-3">
                 <Button onClick={onDelete} className="basis-11 py-1"><FontAwesomeIcon icon={faTrashCan} /></Button>
-                <Button className="basis-11 py-1" theme="yellow"><FontAwesomeIcon icon={faPen} /></Button>
+                <Button onClick={onUpdate} className="basis-11 py-1" theme="yellow"><FontAwesomeIcon icon={faPen} /></Button>
             </div>}
         <div className="mx-6 pl-4">
             {comments}

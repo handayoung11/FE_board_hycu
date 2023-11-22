@@ -11,6 +11,7 @@ import SignUp from './page/SignUp';
 import PostWrite from './page/PostWrite';
 import { register } from 'timeago.js'
 import koLocale from 'timeago.js/lib/lang/ko'
+import PostUpdate from './page/PostUpdate';
 
 register('ko', koLocale);
 axios.defaults.withCredentials = true;
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "/post/write",
     element: <PostWrite />,
+  },
+  {
+    path: "/post/update/:postId",
+    element: <PostUpdate />,
   },
 ]);
 

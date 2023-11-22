@@ -22,6 +22,13 @@ export async function writePost(postData) {
     }
 }
 
+export async function updatePost(postId, postData) {
+    const res = await axios.patch(`/post/${postId}`, postData).catch(onError);
+    if (isValidRes(res)) {
+        return true;
+    }
+}
+
 export async function deletePost(postId) {
     const res = await axios.delete(`post/${postId}`).catch(onError);
     if (isValidRes(res)) {
