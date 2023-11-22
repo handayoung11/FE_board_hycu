@@ -30,6 +30,10 @@ code {
   font-size: 15px;
 }
 
+div:where(.swal2-container) h2:where(.swal2-title) {
+  color: white;
+}
+
 [type=checkbox] {
   appearance: none;
 }

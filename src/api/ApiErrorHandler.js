@@ -14,7 +14,10 @@ export function onError(e) {
 }
 
 export function isValidRes(res) {
-    return res && (res.status === 200 || res.status === 201)
+    if (res) {
+        const status = res.status;
+        return res && (status === 200 || status === 201 || status === 204)
+    }
 }
 
 export const NORETRY = { noRetry: true }

@@ -17,10 +17,10 @@ export default function Feed({ id, title, comments_count, user, like, time_ago, 
                 </div>
             </div>
             <div className="flex mt-3">
-                <div className="grid grid-cols-3 text-sm text-gray-500">
-                    <div><FontAwesomeIcon icon={faUser} className="mr-1" />{user}</div>
-                    <div><FontAwesomeIcon icon={faHeart} className="mr-1" />{like}</div>
-                    <div><FontAwesomeIcon icon={faClock} className="mr-1" />{format(time_ago, 'ko')}</div>
+                <div className="flex gap-3 text-sm text-gray-500">
+                    <div className="flex-initial w-20"><FontAwesomeIcon icon={faUser} className="mr-1" />{user}</div>
+                    <div className="flex-initial w-10"><FontAwesomeIcon icon={faHeart} className="mr-1" />{like}</div>
+                    <div className="flex-initial "><FontAwesomeIcon icon={faClock} className="mr-1" />{format(time_ago, 'ko')}</div>
                 </div>
             </div>
         </div>

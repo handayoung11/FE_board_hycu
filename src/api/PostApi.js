@@ -21,3 +21,10 @@ export async function writePost(postData) {
         return true;
     }
 }
+
+export async function deletePost(postId) {
+    const res = await axios.delete(`post/${postId}`).catch(onError);
+    if (isValidRes(res)) {
+        return true;
+    }
+}
