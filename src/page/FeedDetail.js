@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Layout from "../Layout/Layout";
 import Button from "../comp/Button";
-import ClosePage from "../comp/CloseFeedDetail";
+import ClosePage from "../comp/ClosePage";
 import Comment from "../comp/Comment";
 import usePageStateHook from "../hook/PageStateHook";
 import { usePostHook } from "../hook/PostHook";
@@ -26,7 +26,7 @@ export default function FeedDetail() {
     })
 
     function onUpdate() {
-        navigate(`/post/update/${postId}`, { state: { post } });
+        navigate(`/post/update/${postId}`, { state: { post, page } });
     }
 
     async function onDelete() {
