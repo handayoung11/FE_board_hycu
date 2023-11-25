@@ -12,11 +12,12 @@ import { deletePost } from "../api/PostApi";
 import { useAuth } from "../comp/AuthProvider";
 import { useEffect } from "react";
 import "../scroll.css"
+import { likeOrUnLikePost } from "../api/LikeApi";
 
 export default function FeedDetail() {
     const { isLoggedIn, userInfo } = useAuth();
     const { postId } = useParams();
-    const { post } = usePostHook(postId, isLoggedIn);
+    const { post, fetchPost } = usePostHook(postId, isLoggedIn, onLike);
     const state = usePageStateHook();
     const page = state.page || 1;
     const comments = post ? post.comments.map(c => <Comment key={c.id} {...c} />) : "";
@@ -49,6 +50,12 @@ export default function FeedDetail() {
         }
     }
 
+    async function onLike() {
+        //setPost(prev => ({ ...prev, clickLike: !prev.clickLike }));
+        await likeOrUnLikePost(postId);
+        fetchPost();
+    }
+
     return <Layout headerContent={<ClosePage page={page} />}>
         <div className="h-full border rounded-xl bg-white m-6 mb-2">
             <h2 className="p-4 text-2xl">{post ? post.title : ""}</h2>
@@ -65,7 +72,7 @@ export default function FeedDetail() {
                 </>
             }
             <div className="flex-1">
-                <Button className="basis-16 py-1" level={0}>
+                <Button className="basis-16 py-1" level={0} onClick={onLike}>
                     <FontAwesomeIcon className={post && post.clickLike ? "text-red-600" : ""} icon={faHeart} />
                     <span> {post && post.like}</span>
                 </Button>

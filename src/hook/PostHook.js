@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getPost, getPosts } from "../api/PostApi";
 
 const usePostsHook = () => {
@@ -10,13 +10,19 @@ const usePostsHook = () => {
     return { posts }
 }
 
-const usePostHook = (postId, isLoggedIn) => {
+const usePostHook = (postId, isLoggedIn, onLike) => {
     const [post, setPost] = useState(null);
+
+    const fetchPost = useCallback(() => {
+        getPost(postId).then(data => { setPost(data); });
+    }, [postId]);
+
     useEffect(() => {
-        getPost(postId).then(data => { setPost(data) });
+        fetchPost();
+        // eslint-disable-next-line
     }, [postId, isLoggedIn])
 
-    return { post }
+    return { post, setPost, fetchPost }
 }
 
 export { usePostsHook, usePostHook };
