@@ -12,7 +12,7 @@ import ListButton from "./ListButton";
 import ListButtonContainer from "./ListButtonContainer";
 
 const swal = withReactContent(Swal);
-export default function LoginHeader({ pageNav }) {
+export default function LoginHeader({ pageNav, orderBy, setOrderBy }) {
     const { isLoggedIn, login, logout, showLoginModal, setShowLoginModal } = useAuth();
     const navigate = useNavigate();
     const [showButtons, setShowButtons] = useState(false);
@@ -40,6 +40,10 @@ export default function LoginHeader({ pageNav }) {
         // eslint-disable-next-line
     }, [showLoginModal])
 
+    const onOrder = () => {
+        setOrderBy(orderBy === "P" ? "T" : "P");
+    }
+
     return !isLoggedIn ?
         <>
             {pageNav}
@@ -52,7 +56,8 @@ export default function LoginHeader({ pageNav }) {
                 <FontAwesomeIcon icon={faEllipsisVertical} className="text-slate-400 text-2xl" />
             </button>
             <ListButtonContainer showButtons={showButtons} setShowButtons={setShowButtons} >
-                <ListButton isFirst={true} onClick={() => { logout(); }}>로그아웃</ListButton>
+                {orderBy && <ListButton isFirst={true} onClick={onOrder}>{orderBy==="P" ? "최신순으로" : "인기순으로"}</ListButton>}
+                <ListButton isFirst={orderBy === undefined} onClick={() => { logout(); }}>로그아웃</ListButton>
             </ListButtonContainer>
         </>
 

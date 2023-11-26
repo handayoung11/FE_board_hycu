@@ -8,10 +8,12 @@ import FixedRoundButton from "../comp/FixedRoundButton";
 import LoginHeader from "../comp/LoginHeader";
 import PageNav from "../comp/PageNav";
 import { usePostsHook } from "../hook/PostHook";
+import { useState } from "react";
 
 function FeedView() {
+  const [orderBy, setOrderBy] = useState("T");
+  const { posts } = usePostsHook(orderBy);
   const { isLoggedIn, setShowLoginModal } = useAuth();
-  const { posts } = usePostsHook();
   const [searchParams] = useSearchParams();
   const naviagte = useNavigate();
   const pageSize = 5;
@@ -36,7 +38,7 @@ function FeedView() {
     max = Math.ceil(posts.length / pageSize);
   }
 
-  return <Layout className="flex flex-col h-screen" headerContent={<LoginHeader pageNav={<PageNav page={page} max={max} />} />}>
+  return <Layout className="flex flex-col h-screen" headerContent={<LoginHeader pageNav={<PageNav page={page} max={max} />} orderBy={orderBy} setOrderBy={setOrderBy} />}>
     <div className="p-4 text-2xl text-gray-700 overflow-auto">
       {feeds}
     </div>

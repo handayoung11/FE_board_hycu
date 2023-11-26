@@ -1,8 +1,8 @@
 import axios from "axios";
 import { isValidRes, onError } from "./ApiErrorHandler";
 
-export async function getPosts() {
-    const res = await axios.get("post").catch(onError);
+export async function getPosts(orderBy) {
+    const res = await axios.get(`post?orderBy=${orderBy}`).catch(onError);
     if (isValidRes(res)) {
         return res.data;
     }

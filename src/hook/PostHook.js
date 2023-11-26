@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { getPost, getPosts } from "../api/PostApi";
 
-const usePostsHook = () => {
+const usePostsHook = (orderBy) => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        getPosts().then(data => { setPosts(data) });
-    }, [])
+        getPosts(orderBy).then(data => { setPosts(data) });
+    }, [orderBy])
 
     return { posts }
 }
