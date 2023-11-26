@@ -7,3 +7,19 @@ export async function writeReply(replyData) {
         return true;
     }
 }
+
+export async function deleteReply(replyId) {
+    const res = await axios.delete(`reply/${replyId}`).catch(onError);
+    if (isValidRes(res)) {
+        return true;
+    }
+}
+
+export async function updateReply(replyId, replyData) {
+    const res = await axios.post(`reply/${replyId}`, replyData, {
+        headers: { "Content-type": "application/json" },
+    }).catch(onError);
+    if (isValidRes(res)) {
+        return true;
+    }
+}

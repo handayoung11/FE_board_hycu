@@ -6,15 +6,15 @@ import Swal from "sweetalert2";
 import Layout from "../Layout/Layout";
 import { likeOrUnLikePost } from "../api/LikeApi";
 import { deletePost } from "../api/PostApi";
+import { writeReply } from "../api/ReplyApi";
 import { useAuth } from "../comp/AuthProvider";
 import Button from "../comp/Button";
 import ClosePage from "../comp/ClosePage";
 import Comment from "../comp/Comment";
-import Textarea from "../comp/Textarea";
+import ReplyForm from "../comp/ReplyForm";
 import usePageStateHook from "../hook/PageStateHook";
 import { usePostHook } from "../hook/PostHook";
 import "../scroll.css";
-import { writeReply } from "../api/ReplyApi";
 
 export default function FeedDetail() {
     const { isLoggedIn, userInfo } = useAuth();
@@ -22,7 +22,7 @@ export default function FeedDetail() {
     const { post, fetchPost } = usePostHook(postId, isLoggedIn, onLike);
     const state = usePageStateHook();
     const page = state.page || 1;
-    const comments = post ? post.comments.map(c => <Comment key={c.id} {...c} />) : "";
+    const comments = post ? post.comments.map(c => <Comment key={c.id} {...c} mine={isLoggedIn && userInfo.id === c.creator.id} fetchPost={fetchPost} />) : "";
     const navigate = useNavigate();
     const contentsRef = useRef(null);
 
@@ -95,12 +95,11 @@ export default function FeedDetail() {
                 </Button>
             </div>
         </div>
-        <div className="mx-6 pl-4 pb-10">
-            <div className="flex gap-3">
-                <Textarea ref={contentsRef} />
-                <Button className="flex-none h-10" onClick={onComment}>댓글 달기</Button>
-            </div>
+        <div className="mx-6 pb-10 mt-5">
+            <ReplyForm ref={contentsRef} buttonText="댓글 달기" onClick={onComment} />
+            <div className="pl-4">
             {comments}
+            </div>
         </div>
     </Layout>
 }

@@ -54,3 +54,8 @@ div:where(.swal2-container) h2:where(.swal2-title) {
 .max-h-screen-35 {
   max-height: 35vh;
 }
+
+.text-xxs {
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+}

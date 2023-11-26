@@ -1,9 +1,10 @@
-export default function Button({ children, className = "", level = 1, theme, onClick = () => { } }) {
+import { forwardRef } from "react"
 
-
-
+const Button = forwardRef(({ children, className = "", level = 1, theme, onClick = () => { } }, ref) => {
     if (theme === "yellow") {
         className += " bg-amber-500/80 hover:bg-amber-500 focus:bg-amber-500 focus:ring-amber-600/75"
+    } else if (theme === "green") {
+        className += " bg-green-500/80 hover:bg-green-500 focus:bg-green-500 focus:ring-green-600/75"
     } else {
         switch (level) {
             case 3: className += " bg-rose-500/90 hover:bg-rose-500/75 focus:bg-rose-500/75 focus:ring-rose-700"
@@ -20,5 +21,7 @@ export default function Button({ children, className = "", level = 1, theme, onC
     return <button className={`rounded-xl p-2 text-sm text-white focus:ring-4 focus:outline-none ${className}`} onClick={e => {
         e.currentTarget.blur();
         onClick();
-    }}>{children}</button>
-}
+    }} ref={ref}>{children}</button>
+})
+
+export default Button;
