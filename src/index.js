@@ -14,6 +14,7 @@ import koLocale from 'timeago.js/lib/lang/ko'
 import PostUpdate from './page/PostUpdate';
 
 register('ko', koLocale);
+axios.defaults.baseURL = 'http://localhost:3000';
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true';
 axios.interceptors.response.use(undefined, async e => {
